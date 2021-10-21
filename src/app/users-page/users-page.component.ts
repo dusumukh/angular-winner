@@ -3,6 +3,7 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
+import { SharedService } from '../shared.service';
 
 export interface PeriodicElement {
   Name: string;
@@ -24,7 +25,7 @@ export class UsersPageComponent implements OnInit {
   scorefilter: any;
   public apiProps: Observable<any>[];
 
-  constructor(private afDb: AngularFireDatabase, private dialog: MatDialog) {}
+  constructor(private afDb: AngularFireDatabase, private dialog: MatDialog ,private shared : SharedService) {}
 
   ngOnInit(): void {
     const itemsRef: AngularFireList<any> = this.afDb.list('users');
@@ -35,21 +36,22 @@ export class UsersPageComponent implements OnInit {
     });
   }
   onCheck = (data) => {
-    this.messageEvent.emit(data);
+ this.shared.setData(data);
     this.dialog.open(DialogComponent);
-    // this.notes_Firebase_Data.push(data);
   };
   onChange = ($event: any) => {
     if ($event.value === 'two') {
       const values80 = this.scorefilter.filter((items) => items.Score < 90);
       console.log(values80);
       this.apiProps = values80;
-    } else if ($event.value === 'one') {
+    } else if($event.value === "one"){
       const values90 = this.scorefilter.filter((items) => items.Score > 90);
       console.log(values90);
       this.apiProps = values90;
-    } else {
-      this.apiProps = this.scorefilter;
     }
+    else{
+      this.apiProps = this.scorefilter
+    }
+
   };
 }

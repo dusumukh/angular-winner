@@ -10,9 +10,12 @@ import { SharedService } from '../shared.service';
   styleUrls: ['./winners-page.component.css'],
 })
 export class WinnersPageComponent implements OnInit {
-  displayedColumns: string[] = ['Name','Age', 'Score'];
+  displayedColumns: string[] = ['Name', 'Age', 'Score'];
   public apiProps: Observable<any>[];
-  constructor(private afDb: AngularFireDatabase) {
+  constructor(
+    private afDb: AngularFireDatabase,
+    private shared: SharedService
+  ) {
     const itemsRef: AngularFireList<any> = this.afDb.list('winners');
     itemsRef.valueChanges().subscribe((fire) => {
       this.apiProps = fire;

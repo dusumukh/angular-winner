@@ -19,6 +19,7 @@ export class DialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.apiData = this.shared.getData();
+    console.log(this.apiData);
     this.notes_Firebase_Data = this.afDb.list('winners');
     this.notes_angular = this.notes_Firebase_Data.valueChanges();
   }
