@@ -4,16 +4,7 @@
 
 export const environment = {
   production: false,
-  firebase: {
-    projectId: 'angular-app-63036',
-    appId: '1:574415993067:web:a4292521464813c9b966ae',
-    databaseURL: 'https://angular-app-63036-default-rtdb.firebaseio.com',
-    storageBucket: 'angular-app-63036.appspot.com',
-    apiKey: 'AIzaSyDSSvNNxTN8kKzfhINmziibDxbvD4w-fG8',
-    authDomain: 'angular-app-63036.firebaseapp.com',
-    messagingSenderId: '574415993067',
-    measurementId: 'G-9R4E8TE28L',
-  },
+
 };
 
 /*
